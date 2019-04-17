@@ -1,0 +1,91 @@
+﻿<Page
+    x:Class="VultrMgr.Cloud_Index"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VultrMgr"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Loaded="Grid_Loaded">
+        <StackPanel Margin="25,25,25,25" x:Name="dataView">
+            <ListView ItemsSource="{x:Bind Recordings}">
+                <ListView.Header>
+                    <Grid Padding="12" Background="{ThemeResource SystemBaseLowColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="200"/>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="50"/>
+                            <ColumnDefinition Width="350"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="序号"/>
+                        <TextBlock Grid.Column="1" Text="服务器" />
+                        <TextBlock Grid.Column="2" Text="位置" />
+                        <TextBlock Grid.Column="3" Text="花销"/>
+                        <TextBlock Grid.Column="4" Text="操作"/>
+                        <TextBlock Grid.Column="5" Text="状态"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:ServerInfo">
+                        <Grid Height="48" Padding="0,12,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="200"/>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="50"/>
+                                <ColumnDefinition Width="350"/>
+                                <ColumnDefinition MinWidth="100"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{x:Bind Num}"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{x:Bind ServerText}"></TextBlock>
+                            <TextBlock Grid.Column="2" Text="{x:Bind Location}"></TextBlock>
+                            <TextBlock Grid.Column="3" Text="{x:Bind Charge}"></TextBlock>
+                            <Grid Grid.Column="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="60" />
+                                    <!--Stop-->
+                                    <ColumnDefinition Width="60" />
+                                    <!--Restart-->
+                                    <ColumnDefinition Width="60" />
+                                    <!--Resinstall-->
+                                    <ColumnDefinition Width="60" />
+                                    <!--Destroy-->
+                                    <ColumnDefinition Width="110" />
+                                    <!--Details-->
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE7E8;" FontSize="16"></FontIcon>
+                                    <HyperlinkButton Content="关机" Height="44" x:Name="Shutdown" Click="Shutdown_Click" Tag="{x:Bind Subid}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE72C;" FontSize="16"></FontIcon>
+                                    <HyperlinkButton Content="重启" Height="44" x:Name="Restart" Click="Restart_Click" Tag="{x:Bind Subid}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="2" Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE958;" FontSize="16"></FontIcon>
+                                    <HyperlinkButton Content="重装" Height="44" x:Name="ReInstall" Click="ReInstall_Click" Tag="{x:Bind Subid}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="3" Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" FontSize="16"></FontIcon>
+                                    <HyperlinkButton Content="销毁" Height="44" x:Name="Destroy" Click="Destroy_Click" Tag="{x:Bind Subid}" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="4" Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE946;" FontSize="16"></FontIcon>
+                                    <HyperlinkButton Content="查看详情" Height="44" x:Name="ViewDetail" Click="ViewDetail_Click" Tag="{x:Bind Subid}" />
+                                </StackPanel>
+                            </Grid>
+                            <TextBlock Grid.Column="5" Text="{x:Bind Power}"></TextBlock>
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Height="48" x:Name="loadGrid">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="数据加载中,请稍等......" FontSize="20" x:Name="loadBlock"></TextBlock>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

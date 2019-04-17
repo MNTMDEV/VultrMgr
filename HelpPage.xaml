@@ -1,0 +1,49 @@
+﻿<Page
+    x:Class="VultrMgr.HelpPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VultrMgr"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <Grid x:Name="glsBlur">
+        </Grid>
+        <StackPanel Margin="25,25,25,25">
+            <TextBlock Text="帮助" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>
+            <TextBlock Text="程序初始设置" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,20,0,0"></TextBlock>
+            <TextBlock TextWrapping="Wrap" Margin="0,10,0,0">
+                <Run Foreground="Blue">1.打开程序，进入设置页面</Run>
+                <LineBreak></LineBreak>
+                <Run>设置选项在左侧导航栏最底部可见，进入该页面就可以进行基本的参数设置了。</Run>
+                <LineBreak></LineBreak>
+                <Run Foreground="Blue">2.填入ApiKey并设置用户密码</Run>
+                <LineBreak></LineBreak>
+                <Run>ApiKey如何获取详见下面的Vultr官方链接</Run>
+                <LineBreak></LineBreak>
+                <Run>建议您设置较强的密码，这样可以保障您的ApiKey的安全</Run>
+                <LineBreak></LineBreak>
+                <Run>说明:ApiKey是该程序接入Vultr的API所用的密钥，通过此密钥，用户可以拥有对于Vultr账号的控制权限，当您设置密码时，ApiKey将以您的密码为密钥进行对等加密，只有密码的持有者才能使得程序获取到原本的ApiKey，进而获得对于账户的控制权</Run>
+                <LineBreak></LineBreak>
+                <Run Foreground="Orange">注:虽然用户密码不是必选项，但是为了您的账户安全，请设置密码</Run>
+                <LineBreak></LineBreak>
+                <Run Foreground="Blue">3.保存安全设置</Run>
+                <LineBreak></LineBreak>
+                <Run>两项设置的保存是分开的，请在设置完第一项时保存第一部分</Run>
+                <LineBreak></LineBreak>
+                <Run Foreground="Blue">4.设置消息通知</Run>
+                <LineBreak></LineBreak>
+                <Run Foreground="Blue">5.保存消息通知设置</Run>
+                <LineBreak></LineBreak>
+                <Run>两项设置的保存是分开的，请在设置完第二项时保存第二部分</Run>
+                <LineBreak></LineBreak>
+                <Run Foreground="Blue">6.重启应用程序</Run>
+                <LineBreak></LineBreak>
+                <Run>两项的设置均需重启程序才能生效，否则所有功能无法正常使用</Run>
+            </TextBlock>
+            <TextBlock Text="功能使用方法" Style="{ThemeResource SubtitleTextBlockStyle}" Margin="0,20,0,0"></TextBlock>
+        </StackPanel>
+    </Grid>
+</Page>

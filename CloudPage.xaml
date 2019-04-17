@@ -1,0 +1,23 @@
+﻿<Page
+    x:Class="VultrMgr.CloudPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VultrMgr"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid>
+        <NavigationView Margin="0,0,0,0" PaneDisplayMode="Top" IsSettingsVisible="False" IsBackButtonVisible="Collapsed" ItemInvoked="NavigationView_ItemInvoked" IsBackEnabled="False" AlwaysShowHeader="False">
+            <NavigationView.MenuItems>
+                <NavigationViewItem Content="首页" Icon="Home"></NavigationViewItem>
+                <NavigationViewItem Content="ISO镜像"></NavigationViewItem>
+                <NavigationViewItem Content="快照"></NavigationViewItem>
+                <NavigationViewItem Content="云硬盘"></NavigationViewItem>
+                <NavigationViewItem Content="部署服务器"></NavigationViewItem>
+            </NavigationView.MenuItems>
+            <Frame x:Name="contentFrame"></Frame>
+        </NavigationView>
+    </Grid>
+</Page>

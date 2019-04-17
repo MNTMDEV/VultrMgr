@@ -1,0 +1,37 @@
+﻿<Page
+    x:Class="VultrMgr.LoginPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VultrMgr"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Loaded="Grid_Loaded">
+        <StackPanel Margin="25,15,25,55">
+            <TextBlock>
+                <Run FontSize="24" Foreground="CornflowerBlue">登录</Run>
+            </TextBlock>
+            <TextBlock Margin="0,20,0,0">
+                <Run FontSize="16" Foreground="DarkGray">用户名</Run>
+            </TextBlock>
+            <TextBox Text="" Margin="0,10,0,0" x:Name="userName"></TextBox>
+            <TextBlock Padding="0,10,0,0">
+                <Run FontSize="16" Foreground="DarkGray">密码</Run>
+            </TextBlock>
+            <PasswordBox Margin="0,10,0,0" x:Name="passWord"></PasswordBox>
+            <TextBlock Text="忘记密码?" Foreground="LightGray" Padding="0,10,0,0"></TextBlock>
+
+        </StackPanel>
+        <Grid Margin="25,0,25,15" VerticalAlignment="Bottom" Height="40">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+                <ColumnDefinition Width="2*"></ColumnDefinition>
+                <ColumnDefinition Width="4*"></ColumnDefinition>
+            </Grid.ColumnDefinitions>
+            <Button x:Name="btnConfirm" Grid.Column="0" Content="登录" HorizontalAlignment="Stretch" Click="BtnConfirm_Click"></Button>
+            <Button x:Name="btnCancel" Grid.Column="2" Content="取消" HorizontalAlignment="Stretch" Click="BtnCancel_Click"></Button>
+        </Grid>
+    </Grid>
+</Page>
