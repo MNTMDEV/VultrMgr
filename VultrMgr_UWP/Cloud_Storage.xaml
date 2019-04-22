@@ -1,0 +1,68 @@
+﻿<Page
+    x:Class="VultrMgr.Cloud_Storage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VultrMgr"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Loaded="Grid_Loaded">
+        <StackPanel Margin="25,25,25,25" x:Name="dataView">
+            <ListView ItemsSource="{x:Bind Recordings}">
+                <ListView.Header>
+                    <Grid Padding="12" Background="{ThemeResource SystemBaseLowColor}">
+                        <Grid.ColumnDefinitions>
+                            <ColumnDefinition Width="100"/>
+                            <ColumnDefinition Width="300"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition Width="150"/>
+                            <ColumnDefinition/>
+                        </Grid.ColumnDefinitions>
+                        <TextBlock Text="序号"/>
+                        <TextBlock Grid.Column="1" Text="名称" />
+                        <TextBlock Grid.Column="2" Text="状态" />
+                        <TextBlock Grid.Column="3" Text="每月费用"/>
+                        <TextBlock Grid.Column="4" Text="操作"/>
+                    </Grid>
+                </ListView.Header>
+                <ListView.ItemTemplate>
+                    <DataTemplate x:DataType="local:StorageInfo">
+                        <Grid Height="48" Padding="0,12,0,12">
+                            <Grid.ColumnDefinitions>
+                                <ColumnDefinition Width="100"/>
+                                <ColumnDefinition Width="300"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition Width="150"/>
+                                <ColumnDefinition MinWidth="300"/>
+                            </Grid.ColumnDefinitions>
+                            <TextBlock Grid.Column="0" Text="{x:Bind Count}"></TextBlock>
+                            <TextBlock Grid.Column="1" Text="{x:Bind Label}"></TextBlock>
+                            <TextBlock Grid.Column="2" Text="{x:Bind Status}"></TextBlock>
+                            <TextBlock Grid.Column="3" Text="{x:Bind Cost}"></TextBlock>
+                            <Grid Grid.Column="4">
+                                <Grid.ColumnDefinitions>
+                                    <ColumnDefinition Width="50"></ColumnDefinition>
+                                    <ColumnDefinition></ColumnDefinition>
+                                </Grid.ColumnDefinitions>
+                                <StackPanel Grid.Column="0" Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE70F;" FontSize="16"></FontIcon>
+                                    <HyperlinkButton Content="编辑" Height="44" x:Name="Edit" Tag="" />
+                                </StackPanel>
+                                <StackPanel Grid.Column="1" Orientation="Horizontal">
+                                    <FontIcon FontFamily="Segoe MDL2 Assets" Glyph="&#xE74D;" FontSize="16"></FontIcon>
+                                    <HyperlinkButton Content="删除" Height="44" x:Name="Destroy" Tag="" />
+                                </StackPanel>
+                            </Grid>
+
+                        </Grid>
+                    </DataTemplate>
+                </ListView.ItemTemplate>
+            </ListView>
+            <Grid Height="48" x:Name="loadGrid">
+                <TextBlock HorizontalAlignment="Center" VerticalAlignment="Center" Text="数据加载中,请稍等......" FontSize="20" x:Name="loadBlock"></TextBlock>
+            </Grid>
+        </StackPanel>
+    </Grid>
+</Page>

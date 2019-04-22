@@ -103,6 +103,11 @@ namespace VultrMgr
             }
         }
 
+        /// <summary>
+        /// 重装
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void ReInstall_Click(object sender, RoutedEventArgs e)
         {
             //WARNING
@@ -125,6 +130,11 @@ namespace VultrMgr
             }
         }
 
+        /// <summary>
+        /// 销毁
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private async void Destroy_Click(object sender, RoutedEventArgs e)
         {
             //WARNING
@@ -148,7 +158,7 @@ namespace VultrMgr
         }
         private void ViewDetail_Click(object sender, RoutedEventArgs e)
         {
-
+            //TODO
         }
     }
 }

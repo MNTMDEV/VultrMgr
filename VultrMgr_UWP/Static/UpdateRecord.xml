@@ -1,0 +1,14 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<listroot>
+  <version name="1.0.2">
+    <upitem text="添加了ISO镜像操作功能"></upitem>
+    <upitem text="添加了服务器快照操作功能"></upitem>
+    <upitem text="添加了云硬盘操作功能"></upitem>
+    <upitem text="完成了账号信息查看功能"></upitem>
+  </version>
+  <version name="1.0.1">
+    <upitem text="添加了客户端的密钥认证功能"></upitem>
+    <upitem text="添加了列出服务器列表的功能"></upitem>
+    <upitem text="实现了毛玻璃效果"></upitem>
+  </version>
+</listroot>

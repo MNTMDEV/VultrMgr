@@ -100,7 +100,7 @@ namespace VultrMgr
                         contentFrame.Navigate(typeof(AboutPage));
                         break;
                     case "账号":
-                        MessageAdapter.NoSupportAsync();
+                        contentFrame.Navigate(typeof(AccountPage));
                         break;
                     // Annother selections
                 }

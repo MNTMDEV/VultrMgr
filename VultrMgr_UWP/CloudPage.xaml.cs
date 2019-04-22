@@ -37,12 +37,13 @@ namespace VultrMgr
                     contentFrame.Navigate(typeof(Cloud_Index));
                     break;
                 case "ISO镜像":
+                    contentFrame.Navigate(typeof(Cloud_ISO));
                     break;
                 case "快照":
+                    contentFrame.Navigate(typeof(Cloud_Snap));
                     break;
                 case "云硬盘":
-                    break;
-                case "部署服务器":
+                    contentFrame.Navigate(typeof(Cloud_Storage));
                     break;
             }
         }

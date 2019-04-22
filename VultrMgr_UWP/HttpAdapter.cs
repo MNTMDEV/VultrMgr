@@ -228,6 +228,32 @@ namespace VultrMgr
         }
 
         /// <summary>
+        /// POST的ISOID数据包
+        /// </summary>
+        /// <param name="isoid"></param>
+        private void SetIsoidData(string isoid)
+        {
+            List<KeyValuePair<string, string>> pair = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("ISOID",isoid)
+            };
+            this.httpPair = pair;
+        }
+
+        /// <summary>
+        /// POST的SNAPSHOTID数据包
+        /// </summary>
+        /// <param name="snapid">SNAPSHOTID</param>
+        private void SetSnapidData(string snapid)
+        {
+            List<KeyValuePair<string, string>> pair = new List<KeyValuePair<string, string>>
+            {
+                new KeyValuePair<string, string>("SNAPSHOTID",snapid)
+            };
+            this.httpPair = pair;
+        }
+        
+        /// <summary>
         /// 设置调用Vultr的Uri
         /// </summary>
         /// <param name="path"></param>
@@ -325,6 +351,98 @@ namespace VultrMgr
             AddApiKeyHeader();
             string strResult = await PostAsync();
             return isSuccess;
+        }
+
+        /// <summary>
+        /// 获取ISO列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<IsoInfo>> GetIsoList()
+        {
+            SetApiUri("/v1/iso/list");
+            ClearHeader();
+            AddApiKeyHeader();
+            string strResult = await GetAsync();
+            List<IsoInfo> infoRes = JsonHandle.IsoListJson(strResult);
+            return infoRes;
+        }
+
+        /// <summary>
+        /// 销毁ISO
+        /// </summary>
+        /// <param name="isoid"></param>
+        /// <returns></returns>
+        public async Task<bool> IsoDestroy(string isoid)
+        {
+            SetApiUri("/v1/iso/destroy");
+            SetIsoidData(isoid);
+            ClearHeader();
+            AddApiKeyHeader();
+            string strResult = await PostAsync();
+            return isSuccess;
+        }
+
+        /// <summary>
+        /// 获取快照列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<SnapInfo>> GetSnapList()
+        {
+            SetApiUri("/v1/snapshot/list");
+            ClearHeader();
+            AddApiKeyHeader();
+            string strResult = await GetAsync();
+            List<SnapInfo> infoRes = JsonHandle.SnapListJson(strResult);
+            return infoRes;
+        }
+
+        /// <summary>
+        /// 销毁快照
+        /// </summary>
+        /// <param name="snapid"></param>
+        /// <returns></returns>
+        public async Task<bool> SnapDestroy(string snapid)
+        {
+            SetApiUri("/v1/snapshot/destroy");
+            SetSnapidData(snapid);
+            ClearHeader();
+            AddApiKeyHeader();
+            string strResult = await PostAsync();
+            return isSuccess;
+        }
+
+        /// <summary>
+        /// 获取账号信息
+        /// </summary>
+        /// <returns></returns>
+        public async Task<AccountInfo> GetAccountInfo()
+        {
+            string strAccount = null;
+            string strUser = null;
+            SetApiUri("/v1/account/info");
+            ClearHeader();
+            AddApiKeyHeader();
+            strAccount = await GetAsync();
+            SetApiUri("/v1/auth/info");
+            ClearHeader();
+            AddApiKeyHeader();
+            strUser = await GetAsync();
+            AccountInfo infoRes = JsonHandle.AccountInfoJson(strAccount, strUser);
+            return infoRes;
+        }
+
+        /// <summary>
+        /// 获取云硬盘列表
+        /// </summary>
+        /// <returns></returns>
+        public async Task<List<StorageInfo>> GetStorageList()
+        {
+            SetApiUri("/v1/block/list");
+            ClearHeader();
+            AddApiKeyHeader();
+            string strResult = await GetAsync();
+            List<StorageInfo> infoRes = JsonHandle.StorageListJson(strResult);
+            return infoRes;
         }
 
         //<end>实际操作</end>

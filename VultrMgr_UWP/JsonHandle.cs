@@ -16,6 +16,26 @@ namespace VultrMgr
         }
 
         /// <summary>
+        /// Json标准化([]变{})
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        private static string JsonLize(string str)
+        {
+            if (String.IsNullOrEmpty(str))
+                return str;
+            if ((str[0] == '['))
+            {
+                str = "{" + str.Substring(1);
+            }
+            if ((str[str.Length - 1] == ']'))
+            {
+                str = str.Substring(0, str.Length-1) + "}";
+            }
+            return str;
+        }
+
+        /// <summary>
         /// 分离Json各项
         /// </summary>
         /// <param name="str"></param>
@@ -85,6 +105,13 @@ namespace VultrMgr
             return str.Length-1;
         }
 
+        //实现
+
+        /// <summary>
+        /// 生成服务器信息对象
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
         private static List<ServerInfo> GenerateServerInfo(List<string> list)
         {
             List<ServerInfo> info = new List<ServerInfo>();
@@ -96,6 +123,11 @@ namespace VultrMgr
             return info;
         }
 
+        /// <summary>
+        /// 处理服务器信息
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
         public static List<ServerInfo> ServerListJson(string str)
         {
             List<string> list = SplitJsonString(str);
@@ -103,55 +135,107 @@ namespace VultrMgr
             List<ServerInfo> listRes=GenerateServerInfo(list);
             return listRes;
         }
-    }
-    /// <summary>
-    /// 服务器信息对象
-    /// </summary>
-    public class ServerInfo
-    {
-        public string ServerText { get { return Label + "|"+MainIP; } }
-        public int Num { get; set; }
 
-        [Sign("SUBID")]
-        public string Subid { set; get; }
-        [Sign("os")]
-        public string Os { set; get; }
-        [Sign("ram")]
-        public string Ram { set; get; }
-        [Sign("disk")]
-        public string Disk { set; get; }
-        [Sign("main_ip")]
-        public string MainIP { set; get; }
-        [Sign("vcpu_count")]
-        public string NCPU { set; get; }
-        [Sign("location")]
-        public string Location { set; get; }
-        [Sign("default_password")]
-        public string Password { set; get; }
-        [Sign("date_created")]
-        public string DateCreate { set; get; }
-        [Sign("pending_charges")]
-        public string Charge { set; get; }
-        [Sign("status")]
-        public string Status { set; get; }
-        [Sign("cost_per_month")]
-        public string MonthCharge { set; get; }
-        //[Sign("current_bandwidth_gb")]
-        //public float Bandwidth { set; get; }
-        //[Sign("allowed_bandwidth_gb")]
-        //public string BandMax { set; get; }
-        [Sign("power_status")]
-        public string Power { set; get; }
-        [Sign("server_state")]
-        public string ServerState { set; get; }
-        [Sign("label")]
-        public string Label { set; get; }
-        [Sign("tag")]
-        public string Tag { set; get; }
-
-        public ServerInfo()
+        /// <summary>
+        /// 生成ISO信息对象
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        private static List<IsoInfo> GenerateIsoInfo(List<string> list)
         {
+            List<IsoInfo> info = new List<IsoInfo>();
+            foreach (string item in list)
+            {
+                IsoInfo elem = Json.Parse<IsoInfo>(item);
+                info.Add(elem);
+            }
+            return info;
+        }
 
+        /// <summary>
+        /// 处理ISO信息
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static List<IsoInfo> IsoListJson(string str)
+        {
+            List<string> list = SplitJsonString(str);
+            ExtractJsonValue(list);
+            List<IsoInfo> listRes = GenerateIsoInfo(list);
+            return listRes;
+        }
+
+        /// <summary>
+        /// 生成快照信息对象
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        private static List<SnapInfo> GenerateSnapInfo(List<string> list)
+        {
+            List<SnapInfo> info = new List<SnapInfo>();
+            foreach (string item in list)
+            {
+                SnapInfo elem = Json.Parse<SnapInfo>(item);
+                info.Add(elem);
+            }
+            return info;
+        }
+
+        /// <summary>
+        /// 处理快照信息
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static List<SnapInfo> SnapListJson(string str)
+        {
+            List<string> list = SplitJsonString(str);
+            ExtractJsonValue(list);
+            List<SnapInfo> listRes = GenerateSnapInfo(list);
+            return listRes;
+        }
+
+        /// <summary>
+        /// 处理账号信息
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static AccountInfo AccountInfoJson(string strAccount,string strUser)
+        {
+            AccountInfo listRes = Json.Parse<AccountInfo>(strAccount);
+            AccountInfo listRes2 =Json.Parse<AccountInfo>(strUser);
+            listRes.Email = listRes2.Email;
+            listRes.Name = listRes2.Name;
+            return listRes;
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="list"></param>
+        /// <returns></returns>
+        private static List<StorageInfo> GenerateStorageInfo(List<string> list)
+        {
+            List<StorageInfo> info = new List<StorageInfo>();
+            foreach (string item in list)
+            {
+                StorageInfo elem=Json.Parse<StorageInfo>(item);
+                info.Add(elem);
+            }
+            return info;
+        }
+
+        /// <summary>
+        /// 处理云硬盘信息
+        /// </summary>
+        /// <param name="str"></param>
+        /// <returns></returns>
+        public static List<StorageInfo> StorageListJson(string str)
+        {
+            str = JsonLize(str);
+            List<string> list = SplitJsonString(str);
+            List<StorageInfo> listRes = GenerateStorageInfo(list);
+            return listRes;
         }
     }
+    
 }

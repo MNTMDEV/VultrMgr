@@ -15,7 +15,7 @@
                 <NavigationViewItem Content="ISO镜像"></NavigationViewItem>
                 <NavigationViewItem Content="快照"></NavigationViewItem>
                 <NavigationViewItem Content="云硬盘"></NavigationViewItem>
-                <NavigationViewItem Content="部署服务器"></NavigationViewItem>
+                <!--<NavigationViewItem Content="部署服务器"></NavigationViewItem>-->
             </NavigationView.MenuItems>
             <Frame x:Name="contentFrame"></Frame>
         </NavigationView>

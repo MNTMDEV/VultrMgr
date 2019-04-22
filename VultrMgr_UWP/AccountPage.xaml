@@ -1,0 +1,43 @@
+﻿<Page
+    x:Class="VultrMgr.AccountPage"
+    xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+    xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+    xmlns:local="using:VultrMgr"
+    xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+    xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    mc:Ignorable="d"
+    Background="{ThemeResource ApplicationPageBackgroundThemeBrush}">
+
+    <Grid Loaded="Grid_Loaded">
+        <Grid x:Name="glsBlur">
+        </Grid>
+        <StackPanel Margin="25,25,25,25">
+            <TextBlock Text="用户信息" Style="{ThemeResource TitleTextBlockStyle}"></TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="邮箱" Width="150"></TextBlock>
+                <TextBlock Text="" x:Name="email"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="姓名" Width="150"></TextBlock>
+                <TextBlock Text="" x:Name="name"></TextBlock>
+            </StackPanel>
+            <TextBlock Text="付款信息" Style="{ThemeResource TitleTextBlockStyle}" Margin="0,20,0,0"></TextBlock>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="剩余金额" Width="150"></TextBlock>
+                <TextBlock Text="" x:Name="balance"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="本月花费" Width="150"></TextBlock>
+                <TextBlock Text="" x:Name="pending"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="支付时间" Width="150"></TextBlock>
+                <TextBlock Text="" x:Name="pdate"></TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal" Margin="0,10,0,0">
+                <TextBlock Text="支付金额" Width="150"></TextBlock>
+                <TextBlock Text="" x:Name="pamount"></TextBlock>
+            </StackPanel>
+        </StackPanel>
+    </Grid>
+</Page>
